@@ -28,15 +28,15 @@ void SachNgoaiVan::NhapThongTinSach()
 void SachNgoaiVan::XuatThongTinSach()
 {
 	this->Sach::XuatThongTinSach();
-	cout << setw(7) << left << ISBN << "\t\t";
+	cout << setw(20) << left << ISBN << "\t";
 	cout << setw(7) << left;
 	if (this->LayTinhTrang() == false)
 	{
-		cout << "Chua muon" << "\t";
+		cout << "CHUA MUON" << "\t";
 	}
 	else if (this->LayTinhTrang() == true)
 	{
-		cout << "Duoc muon" << "\t";
+		cout << "DUOC MUON" << "\t";
 	}
 	cout << endl;
 }
@@ -48,6 +48,6 @@ void SachNgoaiVan::GhiVaoFile()
 {
 	this->Sach::GhiVaoFile();
 	fstream f;
-	f.open("DanhSachCuonSach.txt", ios::app);
+	f.open("DanhSachCuonSach.bin", ios::app|ios::binary);
 	f << this->LayISBN() << endl;
 }

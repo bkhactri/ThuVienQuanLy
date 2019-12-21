@@ -44,7 +44,7 @@ void DocGia::DatGioiTinh(string _gt) { this->GioiTinh = _gt; }
 void DocGia::GhiVaoFile()
 {
 	fstream f;
-	f.open("DanhSachDocGia.txt", ios::app);
+	f.open("DanhSachDocGia.bin", ios::app | ios::binary);
 	f << MaDocGia << endl;
 	f << Ten << endl;
 	f << GioiTinh << endl;
@@ -62,12 +62,15 @@ void DocGia::GhiVaoFile()
 void DocGia::NhapThongTinDocGia()
 {
 	cout << "\t\tNhap ma doc gia: "; getline(cin, MaDocGia);
+	uppercase(MaDocGia);
 	cout << "\t\tNhap ten doc gia: "; getline(cin, Ten);
+	uppercase(Ten);
 	cout << "\t\tNhap gioi tinh: "; getline(cin, GioiTinh);
+	uppercase(GioiTinh);
 }
 void DocGia::XuatThongTinDocGia()
 {
-	cout << setw(9) << left << MaDocGia << "\t";
+	cout << setw(10) << left << MaDocGia << "\t";
 	cout << setw(20) << left << Ten << "\t";
 	cout << setw(7) << left << GioiTinh << "\t\t";
 	cout << setw(7) << left << SoLuong.size() << "\t";

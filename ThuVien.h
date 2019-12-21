@@ -3,8 +3,6 @@
 #include"SachNgoaiVan.h"
 #include"SachTiengViet.h"
 #include"DocGia.h"
-#include<fstream>
-#include<Windows.h>
 class ThuVien
 {
 private:
@@ -23,7 +21,7 @@ public:
 	void GhiFileSach();//Ghi file cho  cac du lieu sach nhap vao trong luc su dung
 	void DocFileSach();//Doc file lay du lieu len
 	void ThemSach(); //Them vao 1 cuon sach moi cho thu vien
-	int TimKiemSach(); //Tim kiem sach trong thu vien (hinh thuc tim kiem bang 5 thuoc tinh ten,ma,ten tac gia,nha xuat ban,gia)
+	int TimKiemSach(); //Tim kiem sach trong thu vien (hinh thuc tim kiem bang 5 thuoc tinh ten,ma,ten tac gia,nha xuat ban,gia) -> Phai nhap dung moi tim duoc va 1 lan chi tim duoc 1 cuon sach
 	void SuaSach(); //Sua thong tin 1 cuon sach
 	void XoaSach(); //Xoa 1 cuon sach khoi bo du lieu
 	void XemToanBoSach(); //Xem toan bo thong tin cua sach trong thu vien
@@ -37,8 +35,7 @@ public:
 	void XemToanBoDocGia(); //Xem toan bo thong tin cac doc gia
 	void DanhSachDongPhat(); //Xem danh sach cac doc gia phai dong phat
 };
-//Ham ho tro
-void gotoxy(int x, int y);//Ham gotoxy de  tro xuat o cac vi tri mong muon
+
 
 
 

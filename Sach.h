@@ -4,6 +4,10 @@
 #include<string>
 #include<iomanip>
 #include<fstream>
+#include<vector>
+#include<time.h>
+#include<Windows.h>
+#include<string.h>
 using namespace std;
 class Sach
 {
@@ -47,5 +51,5 @@ int KiemTra(char a[50]);//Kiem tra xuat nhap
 	Nhap 1ee	-> bao loi quuay tro lai nhap tiep
 	Nhap eee
 */
-
-
+void gotoxy(int x, int y);//Ham gotoxy de  tro xuat o cac vi tri mong muon
+void uppercase(string &index);

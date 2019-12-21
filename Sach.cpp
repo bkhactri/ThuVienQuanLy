@@ -49,30 +49,35 @@ void Sach::DatTinhTrang(bool _tinhtrang) { this->TinhTrang = _tinhtrang; }
 //Phuong thuc khac
 void Sach::NhapThongTinSach()
 {
-	char temp[10];
+	char temp[50];
 	cout << "\t\tNhap ma sach: "; getline(cin, MaSach);
+	uppercase(MaSach);
 	cout << "\t\tNhap ten sach: "; getline(cin, TenSach);
+	uppercase(TenSach);
 	cout << "\t\tNhap ten tac gia: "; getline(cin, TacGia);
+	uppercase(TacGia);
 	cout << "\t\tNhap nha xuat ban: ";getline(cin, NhaXuatBan);
-	cout << "\t\tNhap gia ban sach: "; gets_s(temp, 10);
-	do {
-		cout << "\t\tDay khong phai gia tien dung ban hay nhap lai: "; gets_s(temp, 10);
-	} while (KiemTra(temp) == -1);
+	uppercase(NhaXuatBan);
+	cout << "\t\tNhap gia ban sach: "; gets_s(temp, 50);
+	while (KiemTra(temp) == -1) 
+	{
+		cout << "\t\tDay khong phai gia tien dung ban hay nhap lai: "; gets_s(temp, 50);
+	}
 	Gia = atoi(temp);
 	TinhTrang = false;
 }
 void Sach::XuatThongTinSach()
 {
-	cout << setw(6) << left << MaSach << "\t";
+	cout << setw(10) << left << MaSach << "\t";
 	cout << setw(25) << left << TenSach << "\t";
-	cout << setw(20) << left << TacGia << "\t";
-	cout << setw(15) << left << NhaXuatBan << "\t";
+	cout << setw(25) << left << TacGia << "\t";
+	cout << setw(25) << left << NhaXuatBan << "\t";
 	cout << setw(8) << left << Gia << "\t";
 }
 void Sach::GhiVaoFile()
 {
 	fstream f;
-	f.open("DanhSachCuonSach.txt", ios::app);
+	f.open("DanhSachCuonSach.bin", ios::app|ios::binary);
 	f << this->KiemtraLoai() << endl;
 	f << MaSach << endl;
 	f << TenSach << endl;
@@ -103,4 +108,19 @@ int KiemTra(char a[50])
 		temp = atoi(a);
 	}
 	return temp;
+}
+void gotoxy(int x, int y)
+{
+	static HANDLE h = NULL;
+	if (!h)
+		h = GetStdHandle(STD_OUTPUT_HANDLE);
+	COORD c = { x, y };
+	SetConsoleCursorPosition(h, c);
+}
+void uppercase(string &index)
+{
+	for (int i = 0; i < index.size(); i++)
+	{
+		index[i] = toupper(index[i]);
+	}
 }

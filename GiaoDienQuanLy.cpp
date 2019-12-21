@@ -1,6 +1,4 @@
 #include"ThuVien.h"
-#include <windows.h>
-#include<string.h>
 #pragma comment(lib, "user32")
 int main()
 {
@@ -18,7 +16,7 @@ int main()
 		cout << "\t\t1.Quan ly sach\n" << endl;
 		cout << "\t\t2.Quan ly doc gia\n" << endl;
 		cout << "\t\t3.Quan ly phieu muon sach\n" << endl;
-		cout << "\t\t4.Ket thuc va luu tru du lieu\n" << endl;
+		cout << "\t\t4.Thoat chuong trinh\n" << endl;
 		cout << "\t\tNhap lua chon cua ban: "; gets_s(choice, 50);
 		int temp = KiemTra(choice);
 		switch (temp)
@@ -47,5 +45,6 @@ int main()
 			break;
 		}
 	}
+	cout << "\n\t\tDu lieu da duoc cap nhat " << endl;
 	return 0;
 }

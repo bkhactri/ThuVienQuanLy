@@ -17,11 +17,11 @@ void SachTiengViet::XuatThongTinSach()
 	cout << setw(7) << left;
 	if (this->LayTinhTrang() == false)
 	{
-		cout << "Chua muon" << "\t";
+		cout << "CHUA MUON" << "\t";
 	}
 	else if (this->LayTinhTrang() == true)
 	{
-		cout << "Duoc muon" << "\t";
+		cout << "DUOC MUON" << "\t";
 	}
 	cout << endl;
 }

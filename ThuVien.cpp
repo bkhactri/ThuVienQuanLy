@@ -24,11 +24,11 @@ void ThuVien::QuanLySach()
 		system("cls");
 		cout << "\t\t========== QUAN LY SACH ==========\n" << endl;
 		cout << "\t\t1.Them thong tin sach\n" << endl;
-		cout << "\t\t2.Sua thong tin sach\n" << endl;
+		cout << "\t\t2.Cap nhat thong tin sach\n" << endl;
 		cout << "\t\t3.Tim kiem sach\n" << endl;
 		cout << "\t\t4.Xoa thong tin sach\n" << endl;
 		cout << "\t\t5.Xem thong tin cua toan bo sach\n" << endl;
-		cout << "\t\t6.Ket thuc\n" << endl;
+		cout << "\t\t6.Quay lai\n" << endl;
 		cout << "\t\tNhap lua chon cua ban: "; gets_s(choice, 50);
 		int temp = KiemTra(choice);
 		switch (temp)
@@ -36,13 +36,11 @@ void ThuVien::QuanLySach()
 		case 1:
 			system("cls");
 			this->ThemSach();
-			system("pause");
 			break;
 
 		case 2:
 			system("cls");
 			this->SuaSach();
-			system("pause");
 			break;
 		case 3:
 			system("cls");
@@ -53,11 +51,21 @@ void ThuVien::QuanLySach()
 				cout << "\t\tAn 1 de tim kiem lai hoac an phim bat ky de thoat: "; gets_s(choice, 50);
 				if (atoi(choice) == 1) goto DO;
 			}
-			else {
+			else 
+			{
 				cout << "\t\tKet qua tim kiem:\n" << endl;
-				cout << left << setw(6) << "Ma sach" << "\t" << left << setw(25) << "Ten sach" << "\t" << left << setw(20) << "Tac gia" << "\t" << left << setw(15) << "Nha xuat ban" << "\t" << left << setw(7) << "Gia" << "\t" << left << setw(8) << "ISBN" << endl;
-				dsSach[vt]->XuatThongTinSach(); 
-				cout << endl;
+				if (dsSach[vt]->KiemtraLoai() == 2)
+				{
+					cout << left << setw(10) << "Ma sach" << "\t" << left << setw(25) << "Ten sach" << "\t" << left << setw(25) << "Tac gia" << "\t" << left << setw(25) << "Nha xuat ban" << "\t" << left << setw(8) << "Gia" << "\t" << left << setw(20) << "ISBN" << "\t" << left << setw(9) << "Tinh Trang" << "\t" << endl;
+					dsSach[vt]->XuatThongTinSach();
+					cout << endl;
+				}
+				else if (dsSach[vt]->KiemtraLoai() == 1)
+				{
+					cout << left << setw(10) << "Ma sach" << "\t" << left << setw(25) << "Ten sach" << "\t" << left << setw(25) << "Tac gia" << "\t" << left << setw(25) << "Nha xuat ban" << "\t" << left << setw(8) << "Gia" << "\t" << left << setw(9) << "Tinh Trang" << "\t" << endl;
+					dsSach[vt]->XuatThongTinSach();
+					cout << endl;
+				}
 			}
 			system("pause");
 			break;
@@ -96,7 +104,7 @@ void ThuVien::QuanLyDocGia()
 		cout << "\t\t4.Xoa thong tin doc gia\n" << endl;
 		cout << "\t\t5.Xem thong tin cua toan bo doc gia\n" << endl;
 		cout << "\t\t6.Danh sach doc gia qua han tra sach\n" << endl;
-		cout << "\t\t7.Ket thuc\n" << endl;
+		cout << "\t\t7.Quay lai\n" << endl;
 		cout << "\t\tNhap lua chon cua ban: "; gets_s(choice, 50);
 		int temp = KiemTra(choice);
 		switch (temp)
@@ -111,7 +119,6 @@ void ThuVien::QuanLyDocGia()
 			system("cls");
 			cout << "\t\tNhap ma doc gia in tren phieu muon sach de xoa thong tin: ";
 			this->SuaThongTinDocGia();
-			system("pause");
 			break;
 		case 3:
 			DO:
@@ -180,7 +187,7 @@ void ThuVien::QuanLyPhieuMuonSach()
 			cout << "\t\t===== QUAN LY PHIEU MUON SACH =====\n" << endl;
 			cout << "\t\t1.Dang ky them sach\n" << endl;
 			cout << "\t\t2.Tra sach\n" << endl;
-			cout << "\t\t3.Ket thuc\n" << endl;
+			cout << "\t\t3.Quay lai\n" << endl;
 			cout << "\t\tNhap lua chon cua ban: "; gets_s(choice, 50);
 			int temp = KiemTra(choice);
 			switch (temp)
@@ -261,7 +268,7 @@ void ThuVien::GhiFileSach()
 	}
 	else {
 		fstream f;
-		f.open("DanhSachCuonSach.txt", ios::out | ios::trunc);
+		f.open("DanhSachCuonSach.bin", ios::out | ios::trunc|ios::binary);
 		f << dsSach.size() << endl;
 		for (int i = 0; i < dsSach.size(); i++)
 		{
@@ -274,7 +281,7 @@ void ThuVien::DocFileSach()
 {
 	fstream f;
 	int size;
-	f.open("DanhSachCuonSach.txt", ios::in);
+	f.open("DanhSachCuonSach.bin", ios::binary||ios::in);
 	if (f.fail()) { return; }
 	f >> size;
 	for (int i = 0; i < size; i++)
@@ -315,7 +322,7 @@ void ThuVien::ThemSach()
 		cout << "\t\t=====THEM THONG TIN SACH=====\n" << endl;
 		cout << "\t\t1.Them sach tieng viet\n" << endl;
 		cout << "\t\t2.Them sach ngoai van\n" << endl;
-		cout << "\t\t3.Ket thuc\n" << endl;
+		cout << "\t\t3.Quay lai\n" << endl;
 		cout << "\t\tNhap lua chon cua ban: "; gets_s(choice, 50);
 		Sach* input;
 		int temp = KiemTra(choice);
@@ -369,6 +376,7 @@ int ThuVien::TimKiemSach()
 		case 1:
 			cout << "\t\tNhap ma sach: ";
 			getline(cin, ma);
+			uppercase(ma);
 			for (int i = 0; i < dsSach.size(); i++)
 			{
 				if (dsSach[i]->LayMaSach() == ma)
@@ -381,6 +389,7 @@ int ThuVien::TimKiemSach()
 		case 2:
 			cout << "\t\tNhap vao ten sach : ";
 			getline(cin, tenS);
+			uppercase(tenS);
 			for (int i = 0; i < dsSach.size(); i++)
 			{
 				if (dsSach[i]->LayTenSach() == tenS)
@@ -393,6 +402,7 @@ int ThuVien::TimKiemSach()
 		case 3:
 			cout << "\t\tNhap vao ten tac gia : ";
 			getline(cin, tenTG);
+			uppercase(tenTG);
 			for (int i = 0; i < dsSach.size(); i++)
 			{
 				if (dsSach[i]->LayTacGia() == tenTG)
@@ -405,6 +415,7 @@ int ThuVien::TimKiemSach()
 		case 4:
 			cout << "\t\tNhap vao nha xuat ban : ";
 			getline(cin, NXB);
+			uppercase(NXB);
 			for (int i = 0; i < dsSach.size(); i++)
 			{
 				if (dsSach[i]->LayNhaXB() == NXB)
@@ -456,7 +467,8 @@ void ThuVien::SuaSach()
 			cout << "\t\t3.Sua ten tac gia\n" << endl;
 			cout << "\t\t4.Cap nhat nha xuat ban\n" << endl;
 			cout << "\t\t5.Cap nhat gia ban\n" << endl;
-			cout << "\t\t6.Ket thuc\n" << endl;
+			cout << "\t\t6.Cap nhat ma ISBN\n" << endl;
+			cout << "\t\t7.Quay lai\n" << endl;
 			cout << "\t\tNhap lua chon cua ban: "; gets_s(choice, 50);
 			int temp = KiemTra(choice);
 			switch (temp)
@@ -464,6 +476,7 @@ void ThuVien::SuaSach()
 			case 1:
 				system("cls"); 
 				cout << "\t\tNhap ma sach moi: "; getline(cin, Temp);
+				uppercase(Temp);
 				dsSach[vt]->DatMaSach(Temp);
 				cout << "\t\tCap nhat thanh cong" << endl;
 				system("pause");
@@ -471,6 +484,7 @@ void ThuVien::SuaSach()
 			case 2:
 				system("cls"); 
 				cout << "\t\tNhap ten sach moi: "; getline(cin, Temp);
+				uppercase(Temp);
 				dsSach[vt]->DatTenSach(Temp);
 				cout << "\t\tCap nhat thanh cong" << endl;
 				system("pause");
@@ -478,6 +492,7 @@ void ThuVien::SuaSach()
 			case 3:
 				system("cls"); 
 				cout << "\t\tNhap ten tac gia moi: "; getline(cin, Temp);
+				uppercase(Temp);
 				dsSach[vt]->DatTacGia(Temp);
 				cout << "\t\tCap nhat thanh cong" << endl;
 				system("pause");
@@ -485,6 +500,7 @@ void ThuVien::SuaSach()
 			case 4:
 				system("cls");
 				cout << "\t\tNhap nha xuat ban moi: "; getline(cin, Temp);
+				uppercase(Temp);
 				dsSach[vt]->DatNhaXB(Temp);
 				cout << "\t\tCap nhat thanh cong" << endl;
 				system("pause");
@@ -497,6 +513,21 @@ void ThuVien::SuaSach()
 				system("pause");
 				break;
 			case 6:
+				system("cls");
+				if (dsSach[vt]->KiemtraLoai() == 1)
+				{
+					cout << "\t\tDay la sach tieng viet khong the cap nhat ISBN" << endl;
+				}
+				else if (dsSach[vt]->KiemtraLoai() == 2)
+				{
+					cout << "\t\tNhap ma ISBN moi: "; getline(cin, Temp);
+					uppercase(Temp);
+					((SachNgoaiVan*)dsSach[vt])->DatISBN(Temp);
+					cout << "\t\tCap nhat thanh cong" << endl;
+				}
+				system("pause");
+				break; 
+			case 7:
 				Break = true;
 				break;
 			default:
@@ -526,24 +557,24 @@ void ThuVien::XoaSach()
 void ThuVien::XemToanBoSach()
 {
 	cout << "SACH TIENG VIET: \n" << endl;
-	cout << left << setw(6) << "Ma sach" << "\t" << left << setw(25) << "Ten sach" << "\t" << left << setw(20) << "Tac gia" << "\t" << left << setw(15) << "Nha xuat ban" << "\t" << left << setw(8) << "Gia" << "\t" << left << setw(9) << "Tinh Trang" << "\t" << endl;
+	cout << left << setw(10) << "Ma sach" << "\t" << left << setw(25) << "Ten sach" << "\t" << left << setw(25) << "Tac gia" << "\t" << left << setw(25) << "Nha xuat ban" << "\t" << left << setw(8) << "Gia" << "\t" << left << setw(9) << "Tinh Trang" << "\t" << endl;
 	for (int i = 0; i < dsSach.size(); i++)
 	{
 		if (dsSach[i]->KiemtraLoai() == 1)
 		{
-			cout << "==========================================================================================================" << endl;
+			cout << "===========================================================================================================================================" << endl;
 			dsSach[i]->XuatThongTinSach();
 			cout << endl;
 		}
 	}
 	cout << endl;
 	cout << "SACH NGOAI VAN: \n" << endl;
-	cout << left << setw(6) << "Ma sach" << "\t" << left << setw(25) << "Ten sach" << "\t" << left << setw(20) << "Tac gia" << "\t" << left << setw(15) << "Nha xuat ban" << "\t" << left << setw(8) << "Gia" << "\t" << left << setw(8) << "ISBN" << "\t" << left << setw(9) << "Tinh Trang" << "\t" << endl;
+	cout << left << setw(10) << "Ma sach" << "\t" << left << setw(25) << "Ten sach" << "\t" << left << setw(25) << "Tac gia" << "\t" << left << setw(25) << "Nha xuat ban" << "\t" << left << setw(8) << "Gia" << "\t" << left << setw(20) << "ISBN" << "\t" << left << setw(9) << "Tinh Trang" << "\t" << endl;
 	for (int i = 0; i < dsSach.size(); i++)
 	{
 		if (dsSach[i]->KiemtraLoai() == 2)
 		{
-			cout << "==========================================================================================================================" << endl;
+			cout << "===================================================================================================================================================================" << endl;
 			dsSach[i]->XuatThongTinSach();
 			cout << endl;
 		}
@@ -559,7 +590,7 @@ void ThuVien::GhiFileDocGia()
 	else
 	{
 		fstream f;
-		f.open("DanhSachDocGia.txt", ios::out | ios::trunc);
+		f.open("DanhSachDocGia.bin", ios::out | ios::trunc|ios::binary);
 		f << dsDocGia.size() << endl;
 		for (int i = 0; i < dsDocGia.size(); i++)
 		{
@@ -572,7 +603,7 @@ void ThuVien::DocFileDocGia()
 {
 	fstream f;
 	int size1,size2;
-	f.open("DanhSachDocGia.txt", ios::in);
+	f.open("DanhSachDocGia.bin", ios::in||ios::binary);
 	if (f.fail()) { return; }
 	f >> size1;
 	for (int i = 0; i < size1; i++)
@@ -624,6 +655,7 @@ int ThuVien::TimKiemDocGia()
 {
 	string ma;
 	getline(cin, ma);
+	uppercase(ma);
 	for (int i = 0; i < dsDocGia.size(); i++)
 	{
 		if (dsDocGia[i]->LayMaDocGia() == ma)
@@ -659,7 +691,7 @@ DO:
 			cout << "\t\t1.Cap nhat ma doc gia\n" << endl;
 			cout << "\t\t2.Cap nhat ten doc gia\n" << endl;
 			cout << "\t\t3.Cap nhat gioi tinh\n" << endl;
-			cout << "\t\t4.Ket thuc\n" << endl;
+			cout << "\t\t4.Quay lai\n" << endl;
 			cout << "\t\tNhap lua chon cua ban: "; gets_s(choice, 50);
 			int temp = KiemTra(choice);
 			switch (temp)
@@ -667,6 +699,7 @@ DO:
 			case 1:
 				system("cls");
 				cout << "\t\tNhap vao ma doc gia moi: "; getline(cin, Temp);
+				uppercase(Temp);
 				dsDocGia[vt]->DatMaDocGia(Temp);
 				cout << "\t\tCap nhat thanh cong" << endl;
 				system("pause");
@@ -674,6 +707,7 @@ DO:
 			case 2:
 				system("cls");
 				cout << "\t\tNhap vao ten moi cho doc gia: "; getline(cin, Temp);
+				uppercase(Temp);
 				dsDocGia[vt]->DatTen(Temp);
 				cout << "\t\tCap nhat thanh cong" << endl;
 				system("pause");
@@ -681,6 +715,7 @@ DO:
 			case 3:
 				system("cls");
 				cout << "\t\tNhap vao gioi tinh doc gia: "; getline(cin, Temp);
+				uppercase(Temp);
 				dsDocGia[vt]->DatGioiTinh(Temp);
 				cout << "\t\tCap nhat thanh cong" << endl;
 				system("pause");
@@ -719,10 +754,10 @@ DO:
 }
 void ThuVien::XemToanBoDocGia()
 {
-	cout << left << setw(6) << "Ma doc gia" << "\t" << left << setw(20) << "Ten doc gia" << "\t" << left << setw(7) << "Gioi tinh" << "\t" << left << setw(7) << "So sach muon" << endl;
+	cout << left << setw(10) << "Ma doc gia" << "\t" << left << setw(20) << "Ten doc gia" << "\t" << left << setw(7) << "Gioi tinh" << "\t" << left << setw(7) << "So sach muon" << endl;
 	for (int i = 0; i < dsDocGia.size(); i++)
 	{
-		cout << "=============================================================================================" << endl;
+		cout << "==============================================================================================" << endl;
 		dsDocGia[i]->XuatThongTinDocGia();
 		cout << endl;
 	}
@@ -754,14 +789,7 @@ void ThuVien::DanhSachDongPhat()
 		cout << "\n\n\t\tHIEN TAI KHONG DOC GIA NAO NOP TRE HAN" << endl;
 	}
 }
-void gotoxy(int x, int y)
-{
-	static HANDLE h = NULL;
-	if (!h)
-		h = GetStdHandle(STD_OUTPUT_HANDLE);
-	COORD c = { x, y };
-	SetConsoleCursorPosition(h, c);
-}
+
 
 
 

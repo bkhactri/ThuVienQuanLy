@@ -1,8 +1,5 @@
 #pragma once
 #include"Sach.h"
-#include<vector>
-#include<time.h>
-
 
 struct Ngay //Ngay thang nam
 {
