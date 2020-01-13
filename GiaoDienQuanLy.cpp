@@ -1,7 +1,9 @@
 #include"ThuVien.h"
+#include"HamHoTro.h"
 #pragma comment(lib, "user32")
 int main()
 {
+	system("color F1");
 	::SendMessage(::GetConsoleWindow(), WM_SYSKEYDOWN, VK_RETURN, 0x20000000);
 	cout << "Dang cap nhat du lieu....";
 	ThuVien TVDHQG;

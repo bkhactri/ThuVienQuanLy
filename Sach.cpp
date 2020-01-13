@@ -1,4 +1,5 @@
 #include "Sach.h"
+#include"HamHoTro.h"
 //Ham khoi tao va sao chep
 Sach::Sach()
 {
@@ -51,15 +52,15 @@ void Sach::NhapThongTinSach()
 {
 	char temp[50];
 	cout << "\t\tNhap ma sach: "; getline(cin, MaSach);
-	uppercase(MaSach);
+	Uppercase(MaSach);
 	cout << "\t\tNhap ten sach: "; getline(cin, TenSach);
-	uppercase(TenSach);
+	Uppercase(TenSach);
 	cout << "\t\tNhap ten tac gia: "; getline(cin, TacGia);
-	uppercase(TacGia);
-	cout << "\t\tNhap nha xuat ban: ";getline(cin, NhaXuatBan);
-	uppercase(NhaXuatBan);
+	Uppercase(TacGia);
+	cout << "\t\tNhap nha xuat ban: "; getline(cin, NhaXuatBan);
+	Uppercase(NhaXuatBan);
 	cout << "\t\tNhap gia ban sach: "; gets_s(temp, 50);
-	while (KiemTra(temp) == -1) 
+	while (KiemTra(temp) == -1)
 	{
 		cout << "\t\tDay khong phai gia tien dung ban hay nhap lai: "; gets_s(temp, 50);
 	}
@@ -85,42 +86,4 @@ void Sach::GhiVaoFile()
 	f << NhaXuatBan << endl;
 	f << Gia << endl;
 	f << TinhTrang << endl;
-}
-//Ham ho tro
-int KiemTra(char a[50])
-{
-	int temp = 0;
-	bool flag = false;
-	for (int i = 0; i < strlen(a); i++)
-	{
-		if (int(a[i]) < 48 || int(a[i]) > 57)
-		{
-			temp = -1;
-			flag = false;
-		}
-		else
-		{
-			flag = true;
-		}
-	}
-	if (flag == true)
-	{
-		temp = atoi(a);
-	}
-	return temp;
-}
-void gotoxy(int x, int y)
-{
-	static HANDLE h = NULL;
-	if (!h)
-		h = GetStdHandle(STD_OUTPUT_HANDLE);
-	COORD c = { x, y };
-	SetConsoleCursorPosition(h, c);
-}
-void uppercase(string &index)
-{
-	for (int i = 0; i < index.size(); i++)
-	{
-		index[i] = toupper(index[i]);
-	}
 }

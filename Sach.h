@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #pragma once
 #include<stdio.h>
 #include<iostream>
@@ -43,13 +44,3 @@ public:
 	virtual int KiemtraLoai() { return 0; }; //Kiem tra xem cac ke thua la loai sach nao
 	virtual void GhiVaoFile();//Ghi vao file sach
 };
-//Ham ho tro
-int KiemTra(char a[50]);//Kiem tra xuat nhap
-/*
-	yeu cau nhap 1 2 3 4.
-	Nhap e			
-	Nhap 1ee	-> bao loi quuay tro lai nhap tiep
-	Nhap eee
-*/
-void gotoxy(int x, int y);//Ham gotoxy de  tro xuat o cac vi tri mong muon
-void uppercase(string &index);

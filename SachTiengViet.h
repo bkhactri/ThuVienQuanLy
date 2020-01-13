@@ -1,5 +1,6 @@
 #pragma once
 #include"Sach.h"
+#include"HamHoTro.h"
 class SachTiengViet :public Sach
 {
 public:

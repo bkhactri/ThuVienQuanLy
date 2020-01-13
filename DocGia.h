@@ -1,16 +1,6 @@
 #pragma once
 #include"Sach.h"
-
-struct Ngay //Ngay thang nam
-{
-	int ngay, thang, nam;
-	Ngay() {
-		ngay = thang = nam = 0;
-	}
-};
-int SoNgay(Ngay ngay);
-
-
+#include"HamHoTro.h"
 struct PhieuMuonSach //Phieu muon tra sach - 1 doc gia/1 phieu - quan ly cac sach muon, thoi gian muon, thoi gian tra
 {
 	Sach* CuonSach;
@@ -42,7 +32,8 @@ public:
 	~DocGia();
 public://Cac get/set ho so cho viec sua doi thong tin doc gia
 	int LaySoLuongSach();
-	void DatNgayTra(Ngay,int);//Dat ngay tra sach - vi tri int() la cuon sach doc gia tra
+	void DatNgayTra(Ngay,int);//Dat ngay tra sach - vi tri int la cuon sach doc gia tra trong danh sach sach cua thu vien
+	int LayTinhTrangSach(int);
 	string LayMaDocGia();
 	void DatMaDocGia(string);
 	string LayTen();
@@ -59,18 +50,6 @@ public:
 	int TongTienPhat(); //Tong so tien phat ma doc gia phai tra ( vd muon 10 cuon tra tre 7 cuon thi tinh tien 7 cuon)
 	void XuatThongTinSachTreHan();
 };
-//Ham ho tro
 
-//Dem so ngay (ham dung de tinh khoang cach 2 ngay -> tinh tien tre han)
-int SoNgay(Ngay);
-
-//Cap nhat ngay thang nam theo he thong
-int KiemTraNgay(Ngay ngay);
-
-//Cap nhat ngay thang nam bang cach nhap(vi cai nay em muon thay test duoc cai tinh tien)
-void CapNhatNgayMuon(Ngay&);
-
-//Kiem tra tinh hop le cua ngay
-void CapNhatNgayTra(Ngay&);
 
 
